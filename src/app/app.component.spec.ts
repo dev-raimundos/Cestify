@@ -1,16 +1,27 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  it('should create the app', async () => {
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [provideRouter([])]
     }).compileComponents();
-    
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+  });
+
+  it('should create the app', () => {
+    expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('should render a router outlet', () => {
+    const routerOutlet: HTMLElement = fixture.nativeElement.querySelector('ion-router-outlet');
+    expect(routerOutlet).toBeTruthy();
   });
 });

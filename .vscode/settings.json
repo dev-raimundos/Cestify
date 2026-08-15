@@ -4,5 +4,10 @@
     "@ionic/angular/directives",
     "@ionic/angular/index.d.ts",
     "@ionic/angular/providers"
+  ],
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "file": ".github/instructions/commit-message-generation.instructions.md"
+    }
   ]
 }
