@@ -33,16 +33,16 @@
         <mat-card-content>
             <form [formGroup]="form" class="demo-form" (ngSubmit)="submitForm()">
                 <mat-form-field appearance="outline">
-                    <mat-label>Nome</mat-label>
-                    <input matInput formControlName="name" />
+                    <mat-label id="nameLabel">Nome</mat-label>
+                    <input matInput formControlName="name" aria-labelledby="nameLabel" />
                     @if (form.controls.name.invalid && form.controls.name.touched) {
                         <mat-error>Informe um nome.</mat-error>
                     }
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>E-mail</mat-label>
-                    <input matInput type="email" formControlName="email" />
+                    <mat-label id="emailLabel">E-mail</mat-label>
+                    <input matInput type="email" formControlName="email" aria-labelledby="emailLabel" />
                     @if (form.controls.email.invalid && form.controls.email.touched) {
                         <mat-error>Informe um e-mail válido.</mat-error>
                     }
@@ -58,8 +58,8 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Data prevista</mat-label>
-                    <input matInput [matDatepicker]="datepicker" formControlName="date" />
+                    <mat-label id="dateLabel">Data prevista</mat-label>
+                    <input matInput [matDatepicker]="datepicker" formControlName="date" aria-labelledby="dateLabel" />
                     <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker #datepicker></mat-datepicker>
                 </mat-form-field>
@@ -83,9 +83,9 @@
                 </div>
 
                 <div class="demo-form__field">
-                    <span class="demo-form__label">Volume de alerta</span>
+                    <span class="demo-form__label" id="volumeLabel">Volume de alerta</span>
                     <mat-slider min="0" max="100" step="10" discrete>
-                        <input matSliderThumb formControlName="volume" />
+                        <input matSliderThumb formControlName="volume" aria-labelledby="volumeLabel" />
                     </mat-slider>
                 </div>
 

@@ -16,6 +16,8 @@ export const appConfig: ApplicationConfig = {
         { provide: MAT_ICON_DEFAULT_OPTIONS, useValue: { fontSet: 'material-symbols-outlined' } },
         provideHttpClient(withInterceptors([ApiUrlInterceptor, HttpErrorInterceptor])),
         provideAppInitializer(() => inject(AuthService).fetchCurrentUser()),
-        provideAppInitializer(() => void inject(ThemeService)),
+        provideAppInitializer(() => {
+            inject(ThemeService);
+        }),
     ],
 };
