@@ -17,7 +17,7 @@ module.exports = defineConfig(
       '@angular-eslint/component-class-suffix': [
         'error',
         {
-          suffixes: ['Page', 'Component'],
+          suffixes: ['Page', 'Component', 'App'],
         },
       ],
       '@angular-eslint/component-selector': [
