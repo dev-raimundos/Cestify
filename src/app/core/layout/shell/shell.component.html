@@ -3,8 +3,7 @@
         <router-outlet></router-outlet>
     </main>
 
-    <nav class="dock">
-
+    <nav class="dock" [style.transform]="dockTransform()">
         @for (item of menuItems; track item.route) {
             <a
                 class="dock-item"

@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { effect, inject, Injectable, signal } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 export type Theme = 'light' | 'dark';
 
@@ -36,5 +38,9 @@ export class ThemeService {
 
     private _applyTheme(theme: Theme): void {
         this._document.documentElement.classList.toggle(DARK_CLASS, theme === 'dark');
+
+        if (Capacitor.isNativePlatform()) {
+            StatusBar.setStyle({ style: theme === 'dark' ? Style.Dark : Style.Light });
+        }
     }
 }
