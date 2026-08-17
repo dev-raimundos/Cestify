@@ -6,12 +6,12 @@
 </header>
 
 <div class="demo-grid">
-    <mat-card class="demo-card">
-        <mat-card-header>
-            <mat-card-title>Botões</mat-card-title>
-            <mat-card-subtitle>Ações, ícones e destaque</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="button-row">
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Botões</h2>
+            <p class="demo-section__subtitle">Ações, ícones e destaque</p>
+        </header>
+        <div class="demo-section__content button-row">
             <button mat-flat-button>Flat</button>
             <button mat-raised-button color="primary">Raised</button>
             <button mat-stroked-button>Stroked</button>
@@ -22,15 +22,17 @@
             <button mat-fab color="primary" matTooltip="Adicionar">
                 <mat-icon>add</mat-icon>
             </button>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </section>
 
-    <mat-card class="demo-card demo-card--wide">
-        <mat-card-header>
-            <mat-card-title>Formulário</mat-card-title>
-            <mat-card-subtitle>Campos, seleção e validação</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
+    <mat-divider></mat-divider>
+
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Formulário</h2>
+            <p class="demo-section__subtitle">Campos, seleção e validação</p>
+        </header>
+        <div class="demo-section__content">
             <form [formGroup]="form" class="demo-form" (ngSubmit)="submitForm()">
                 <mat-form-field appearance="outline">
                     <mat-label id="nameLabel">Nome</mat-label>
@@ -97,15 +99,17 @@
                     Enviar
                 </button>
             </form>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </section>
 
-    <mat-card class="demo-card">
-        <mat-card-header>
-            <mat-card-title>Feedback</mat-card-title>
-            <mat-card-subtitle>Progresso, snackbar e diálogo</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="feedback-content">
+    <mat-divider></mat-divider>
+
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Feedback</h2>
+            <p class="demo-section__subtitle">Progresso, snackbar e diálogo</p>
+        </header>
+        <div class="demo-section__content feedback-content">
             <mat-progress-bar [mode]="isLoading() ? 'indeterminate' : 'determinate'" [value]="70"></mat-progress-bar>
 
             <div class="feedback-actions">
@@ -118,14 +122,16 @@
                 </button>
                 <button mat-stroked-button (click)="openDialog()">Abrir diálogo</button>
             </div>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </section>
 
-    <mat-card class="demo-card">
-        <mat-card-header>
-            <mat-card-title>Abas</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+    <mat-divider></mat-divider>
+
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Abas</h2>
+        </header>
+        <div class="demo-section__content">
             <mat-tab-group>
                 <mat-tab label="Visão geral">
                     <p class="tab-content">Resumo das atividades recentes do sistema.</p>
@@ -137,14 +143,16 @@
                     <p class="tab-content">Linha do tempo de alterações.</p>
                 </mat-tab>
             </mat-tab-group>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </section>
 
-    <mat-card class="demo-card">
-        <mat-card-header>
-            <mat-card-title>Atividade recente</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+    <mat-divider></mat-divider>
+
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Atividade recente</h2>
+        </header>
+        <div class="demo-section__content">
             <mat-list>
                 @for (item of activityItems; track item.title) {
                     <mat-list-item>
@@ -154,48 +162,41 @@
                     </mat-list-item>
                 }
             </mat-list>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </section>
 
-    <mat-card class="demo-card demo-card--wide">
-        <mat-card-header>
-            <mat-card-title>Usuários</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="table-scroll">
-                <table mat-table [dataSource]="userRows">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef>Nome</th>
-                        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-                    </ng-container>
+    <mat-divider></mat-divider>
 
-                    <ng-container matColumnDef="email">
-                        <th mat-header-cell *matHeaderCellDef>E-mail</th>
-                        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
-                    </ng-container>
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Usuários</h2>
+        </header>
+        <div class="demo-section__content">
+            <mat-list>
+                @for (row of userRows; track row.email) {
+                    <mat-list-item>
+                        <span matListItemTitle>{{ row.name }}</span>
+                        <span matListItemLine>{{ row.role }} · {{ row.email }}</span>
+                        <span
+                            matListItemMeta
+                            class="status-badge"
+                            [class.status-badge--active]="row.status === 'Ativo'"
+                        >
+                            {{ row.status }}
+                        </span>
+                    </mat-list-item>
+                }
+            </mat-list>
+        </div>
+    </section>
 
-                    <ng-container matColumnDef="role">
-                        <th mat-header-cell *matHeaderCellDef>Perfil</th>
-                        <td mat-cell *matCellDef="let row">{{ row.role }}</td>
-                    </ng-container>
+    <mat-divider></mat-divider>
 
-                    <ng-container matColumnDef="status">
-                        <th mat-header-cell *matHeaderCellDef>Status</th>
-                        <td mat-cell *matCellDef="let row">{{ row.status }}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-                </table>
-            </div>
-        </mat-card-content>
-    </mat-card>
-
-    <mat-card class="demo-card demo-card--wide">
-        <mat-card-header>
-            <mat-card-title>Perguntas frequentes</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+    <section class="demo-section">
+        <header class="demo-section__header">
+            <h2 class="demo-section__title">Perguntas frequentes</h2>
+        </header>
+        <div class="demo-section__content">
             <mat-accordion>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -210,8 +211,8 @@
                     <p>Acesse Configurações e ajuste as preferências de alerta.</p>
                 </mat-expansion-panel>
             </mat-accordion>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </section>
 </div>
 
 <ng-template #confirmDialog>

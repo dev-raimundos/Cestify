@@ -170,6 +170,18 @@ body {
     --mat-snack-bar-button-color: var(--mat-sys-inverse-on-surface);
 }
 
+// Menu de perfil da dock: compacta o painel e os itens, que por padrão
+// usam min-height/min-width pensados para desktop.
+.user-menu-panel {
+    min-width: 180px;
+    max-width: 220px;
+    --mat-menu-item-icon-size: 20px;
+
+    .mat-mdc-menu-item {
+        min-height: 40px;
+    }
+}
+
 // Fade suave entre telas (Angular Router View Transitions API)
 ::view-transition-old(root),
 ::view-transition-new(root) {

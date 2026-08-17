@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild, inject, signal } from '@angular/core
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,7 +17,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -47,7 +46,7 @@ const LOADING_SIMULATION_MS = 1800;
         ReactiveFormsModule,
         MatButtonModule,
         MatIconModule,
-        MatCardModule,
+        MatDividerModule,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
@@ -61,7 +60,6 @@ const LOADING_SIMULATION_MS = 1800;
         MatProgressSpinnerModule,
         MatTabsModule,
         MatListModule,
-        MatTableModule,
         MatExpansionModule,
         MatBadgeModule,
         MatTooltipModule,
@@ -86,7 +84,6 @@ export class DashboardComponent {
     readonly planOptions = ['Básico', 'Pro', 'Enterprise'];
     readonly tagOptions = ['Frontend', 'Backend', 'Design', 'Mobile', 'API'];
 
-    readonly displayedColumns = ['name', 'email', 'role', 'status'];
     readonly userRows: UserRow[] = [
         { name: 'Ana Silva', email: 'ana.silva@exemplo.com', role: 'Admin', status: 'Ativo' },
         { name: 'Bruno Costa', email: 'bruno.costa@exemplo.com', role: 'Editor', status: 'Ativo' },
