@@ -1,49 +1,39 @@
-<mat-sidenav-container class="container">
-    <mat-sidenav
-        #sidenav
-        [mode]="isMobile() ? 'over' : 'side'"
-        [opened]="opened()"
-        (openedChange)="opened.set($event)"
-        [fixedInViewport]="isMobile()"
-        class="sidenav"
-    >
-        <div class="brand">
-            <img src="heart_log.svg" alt="" class="brand-icon" />
-            <span class="brand-name">Coeur</span>
-        </div>
-        <mat-divider></mat-divider>
-        <mat-nav-list>
-            @for (item of menuItems; track item.route) {
-                <a
-                    mat-list-item
-                    [routerLink]="item.route"
-                    routerLinkActive
-                    #rla="routerLinkActive"
-                    [activated]="rla.isActive"
-                >
-                    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-                    <span matListItemTitle>{{ item.label }}</span>
-                </a>
-            }
-        </mat-nav-list>
+<div class="shell">
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
 
-        <div class="spacer"></div>
+    <nav class="dock">
+
+        @for (item of menuItems; track item.route) {
+            <a
+                class="dock-item"
+                [routerLink]="item.route"
+                routerLinkActive="dock-item-active"
+                #rla="routerLinkActive"
+            >
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span class="dock-label">{{ item.label }}</span>
+            </a>
+        }
 
         @if (currentUser(); as user) {
-            <mat-divider></mat-divider>
             <button
-                class="user-menu-trigger"
+                class="dock-item user-menu-trigger"
                 [matMenuTriggerFor]="userMenu"
                 #userMenuTrigger="matMenuTrigger"
+                [class.dock-item-active]="userMenuTrigger.menuOpen"
             >
-                <span class="user-avatar">{{ userInitials() }}</span>
-                <span class="user-name">{{ userDisplayName() }}</span>
-                <mat-icon class="user-menu-caret" [class.user-menu-caret-open]="userMenuTrigger.menuOpen">
-                    arrow_drop_up
-                </mat-icon>
+                <mat-icon>person</mat-icon>
+                <span class="dock-label">Perfil</span>
             </button>
 
             <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above">
+                <div class="user-menu-header">
+                    <mat-icon>person</mat-icon>
+                    <span class="user-name">{{ userDisplayName() }}</span>
+                </div>
+                <mat-divider></mat-divider>
                 <button mat-menu-item (click)="setTheme('light')">
                     <mat-icon>light_mode</mat-icon>
                     <span>Tema claro</span>
@@ -65,17 +55,5 @@
                 </button>
             </mat-menu>
         }
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-        <mat-toolbar color="primary">
-            <button mat-icon-button (click)="toggleSidenav()">
-                <mat-icon>side_navigation</mat-icon>
-            </button>
-        </mat-toolbar>
-
-        <div class="content">
-            <router-outlet></router-outlet>
-        </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    </nav>
+</div>

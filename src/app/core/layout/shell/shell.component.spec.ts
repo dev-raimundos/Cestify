@@ -45,12 +45,6 @@ describe('ShellComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should toggle the sidenav opened state', () => {
-        const initial = component.opened();
-        component.toggleSidenav();
-        expect(component.opened()).toBe(!initial);
-    });
-
     it('should delegate logout to AuthService', () => {
         component.logout();
         expect(logoutSpy).toHaveBeenCalled();
@@ -61,7 +55,7 @@ describe('ShellComponent', () => {
         expect(setThemeSpy).toHaveBeenCalledWith('dark');
     });
 
-    it("should display the current user's initials and name in the sidenav user menu when logged in", () => {
+    it("should display the current user's name in the profile menu when logged in", () => {
         currentUser.set({
             id: '1',
             name: 'Ana Silva',
@@ -76,11 +70,13 @@ describe('ShellComponent', () => {
         fixture.detectChanges();
 
         const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('.user-avatar')?.textContent).toContain('AS');
-        expect(compiled.querySelector('.user-name')?.textContent).toContain('Ana Silva');
+        (compiled.querySelector('.user-menu-trigger') as HTMLElement).click();
+        fixture.detectChanges();
+
+        expect(document.querySelector('.user-name')?.textContent).toContain('Ana Silva');
     });
 
-    it('should use a single initial when the user has only one name', () => {
+    it('should display a single name when the user has only one name', () => {
         currentUser.set({
             id: '1',
             name: 'Madonna',
@@ -95,8 +91,10 @@ describe('ShellComponent', () => {
         fixture.detectChanges();
 
         const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('.user-avatar')?.textContent).toContain('M');
-        expect(compiled.querySelector('.user-name')?.textContent).toContain('Madonna');
+        (compiled.querySelector('.user-menu-trigger') as HTMLElement).click();
+        fixture.detectChanges();
+
+        expect(document.querySelector('.user-name')?.textContent).toContain('Madonna');
     });
 
     it('should not display the user menu when there is no logged in user', () => {
@@ -105,5 +103,13 @@ describe('ShellComponent', () => {
 
         const compiled = fixture.nativeElement as HTMLElement;
         expect(compiled.querySelector('.user-menu-trigger')).toBeNull();
+    });
+
+    it('should render a dock item for each menu entry', () => {
+        fixture.detectChanges();
+
+        const compiled = fixture.nativeElement as HTMLElement;
+        const dockItems = compiled.querySelectorAll('.dock-item');
+        expect(dockItems.length).toBe(component.menuItems.length);
     });
 });
